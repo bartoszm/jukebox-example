@@ -1,0 +1,27 @@
+module hello {
+    yang-version 1.1;
+    namespace "urn:com:amartus:example:hello";
+    prefix "hello";
+
+    revision "2017-11-08" {
+        description "Initial revision of hello model";
+    }
+   container hello-response {
+    leaf prefix {
+        type string;
+    }
+   }
+
+   rpc hello-world {
+        input {
+            leaf name {
+                type string;
+            }
+        }
+        output {
+            leaf greeting {
+                type string;
+            }
+        }
+   }
+}

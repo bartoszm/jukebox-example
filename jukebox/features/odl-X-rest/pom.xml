@@ -39,7 +39,7 @@
         </dependency>
         <dependency>
             <groupId>${project.groupId}</groupId>
-            <artifactId>odl-jukebox-cli</artifactId>
+            <artifactId>odl-jukebox</artifactId>
             <version>${project.version}</version>
             <type>xml</type>
             <classifier>features</classifier>

@@ -20,5 +20,9 @@ and is available at http://www.eclipse.org/legal/epl-v10.html
     init-method="init" destroy-method="close">
     <argument ref="dataBroker" />
   </bean>
+  <bean id="helloWorldService" class="com.amartus.examples.impl.hello.HeloServiceImpl"></bean>
+
+  <odl:rpc-implementation ref="helloWorldService" interface="org.opendaylight.yang.gen.v1.urn.com.amartus.example.hello.rev171108.HelloService" />
+  
 
 </blueprint>
