@@ -24,6 +24,10 @@ and is available at http://www.eclipse.org/legal/epl-v10.html
     <property name="broker" ref="dataBroker" />
   </bean>
 
+  <bean id="helloChangeListener" class="com.amartus.examples.impl.hello.HelloServiceChangeListener" init-method="init" destroy-method="close">
+    <argument ref="dataBroker" />
+  </bean>
+
   <odl:rpc-implementation ref="helloWorldService" interface="org.opendaylight.yang.gen.v1.urn.com.amartus.example.hello.rev171108.HelloService" />
   
 
