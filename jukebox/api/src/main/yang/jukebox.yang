@@ -1,9 +1,103 @@
 module jukebox {
-    yang-version 1.1;
-    namespace "urn:com:amartus:example:jukebox";
-    prefix "jukebox";
 
-    revision "2017-08-30" { // TODO change revision to date of model creation
-        description "Initial revision of jukebox model";
-    }
-}
+      namespace "http://example.com/ns/example-jukebox";
+      prefix "jbox";
+
+      organization "Example, Inc.";
+      contact "support at example.com";
+      description "Example Jukebox Data Model Module.";
+      revision "2017-11-08" {
+        description "Initial version.";
+        reference "example.com document 1-4673.";
+      }
+
+      container jukebox {
+        presence
+          "An empty container indicates that the jukebox
+           service is available.";
+
+        description
+          "Represents a 'jukebox' resource, with a library, playlists,
+           and a 'play' operation.";
+
+        container library {
+
+          description
+            "Represents the 'jukebox' library resource.";
+
+          list artist {
+            key name;
+            description
+              "Represents one 'artist' resource within the
+               'jukebox' library resource.";
+
+            leaf name {
+              type string {
+                length "1 .. max";
+              }
+              description
+                "The name of the artist.";
+            }
+
+            list song {
+              key name;
+              description
+                "Song name";
+
+              leaf name {
+                type string {
+                  length "1 .. max";
+                }
+                description
+                  "The name of the album.";
+              }
+
+              leaf year {
+                type uint16 {
+                  range "1900 .. max";
+                }
+                description
+                  "The song was released.";
+              }
+
+
+            }   // end list 'song'
+          }  // end list 'artist'
+
+          leaf artist-count {
+             type uint32;
+             units "artists";
+             config false;
+             description
+               "Number of artists in the library.";
+          }
+
+          leaf song-count {
+             type uint32;
+             units "songs";
+             config false;
+             description
+               "Number of songs in the library.";
+          }
+        }  // end library
+      }
+
+      rpc play {
+        description
+          "Control function for the jukebox player.";
+        input {
+          leaf artist {
+            type string;
+            mandatory true;
+            description
+              "The artist name.";
+          }
+          leaf song-name {
+            type string;
+            mandatory true;
+            description
+              "Song name";
+          }
+        }
+      }
+   }
